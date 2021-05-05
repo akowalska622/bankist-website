@@ -29,3 +29,38 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+//////////////////////////////////////////////////
+
+/////////////////////// COOKIES MESSAGE //////////////////
+const message = document.createElement('div');
+message.classList.add('cookie-message');
+message.textContent =
+  'We use cookies for improved functionality and analytics.';
+message.innerHTML =
+  'We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button>';
+
+const header = document.querySelector('.header');
+header.append(message);
+document
+  .querySelector('.btn--close-cookie')
+  .addEventListener('click', () => message.remove());
+
+/////////////////////// SMOOTH SCROLLING /////////////////
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', evt => {
+  //////// OLD WAY, NEW WAY IS OKAY ONLY IN NEW BROWSERS ////
+  //console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
+  //const s1coords = section1.getBoundingClientRect();
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth'
+  // });
+
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
