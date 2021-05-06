@@ -1,13 +1,19 @@
 'use strict';
 
 ///////////////////////////////////////
-// Modal window
-
+//ELEMENTS
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const message = document.createElement('div');
+const header = document.querySelector('.header');
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+const navbar = document.querySelector('.nav');
 
+///////////////////////////////////////
+// Modal window
 const openModal = function () {
   modal.classList.remove('hidden');
   overlay.classList.remove('hidden');
@@ -35,23 +41,18 @@ document.addEventListener('keydown', function (e) {
 //////////////////////////////////////////////////
 
 /////////////////////// COOKIES MESSAGE //////////////////
-const message = document.createElement('div');
 message.classList.add('cookie-message');
 message.textContent =
   'We use cookies for improved functionality and analytics.';
 message.innerHTML =
   'We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button>';
 
-const header = document.querySelector('.header');
 header.append(message);
 document
   .querySelector('.btn--close-cookie')
   .addEventListener('click', () => message.remove());
 
 /////////////////////// SMOOTH SCROLLING /////////////////
-const btnScrollTo = document.querySelector('.btn--scroll-to');
-const section1 = document.querySelector('#section--1');
-
 btnScrollTo.addEventListener('click', evt => {
   //////// OLD WAY, NEW WAY IS OKAY ONLY IN NEW BROWSERS ////
   //console.log('Current scroll (X/Y)', window.pageXOffset, window.pageYOffset);
@@ -63,4 +64,17 @@ btnScrollTo.addEventListener('click', evt => {
   // });
 
   section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+//////////// SMOOTH SCROLLING (Navigation) /////////////////
+///// Completed without help of videos or instructor
+// Code can be different then in Jonas' course
+
+navbar.addEventListener('click', e => {
+  if (!e.target.classList.contains('nav__link')) return;
+  e.preventDefault();
+
+  document
+    .querySelector(e.target.getAttribute('href'))
+    .scrollIntoView({ behavior: 'smooth' });
 });
