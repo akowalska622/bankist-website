@@ -78,3 +78,33 @@ navbar.addEventListener('click', e => {
     .querySelector(e.target.getAttribute('href'))
     .scrollIntoView({ behavior: 'smooth' });
 });
+
+//////////// TAB COMPONENT /////////////////
+///// Almost 100% completed without help of videos or instructor
+// clicked var borrowed from course
+// Code can be different then in Jonas' course
+const tabContainer = document.querySelector('.operations__tab-container');
+
+const handleTogglingTab = e => {
+  const clicked = e.target.closest('.operations__tab');
+
+  if (!clicked) return;
+  const activeBtn = document.querySelector('.operations__tab--active');
+
+  if (activeBtn === clicked) return;
+
+  //toggle buttons
+  activeBtn.classList.remove('operations__tab--active');
+  clicked.classList.add('operations__tab--active');
+
+  //toggle content
+  document
+    .querySelector('.operations__content--active')
+    .classList.remove('operations__content--active');
+
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+};
+
+tabContainer.addEventListener('click', handleTogglingTab);
