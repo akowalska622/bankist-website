@@ -11,6 +11,7 @@ const header = document.querySelector('.header');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 const navbar = document.querySelector('.nav');
+const tabContainer = document.querySelector('.operations__tab-container');
 
 ///////////////////////////////////////
 // Modal window
@@ -83,7 +84,6 @@ navbar.addEventListener('click', e => {
 ///// Almost 100% completed without help of videos or instructor
 // clicked var borrowed from course
 // Code can be different then in Jonas' course
-const tabContainer = document.querySelector('.operations__tab-container');
 
 const handleTogglingTab = e => {
   const clicked = e.target.closest('.operations__tab');
@@ -108,3 +108,21 @@ const handleTogglingTab = e => {
 };
 
 tabContainer.addEventListener('click', handleTogglingTab);
+
+//////////// MENU FADE ANIMATION /////////////////
+//mouseon doesn't bubble!!!
+const handleHover = function (e) {
+  if (!e.target.classList.contains('nav__link')) return;
+  const link = e.target;
+  const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+  const logo = link.closest('.nav').querySelector('img');
+
+  siblings.forEach(el => {
+    if (el !== link) el.style.opacity = this;
+  });
+  logo.style.opacity = this;
+};
+
+navbar.addEventListener('mouseover', handleHover.bind(0.5));
+
+navbar.addEventListener('mouseout', handleHover.bind(1));
